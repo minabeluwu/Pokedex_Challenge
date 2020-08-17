@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import PokeAPI from "../../APIS/PokeAPI";
 import TypePokemon from "../../components/TypePokemon";
+import AbilitiesPokemon from "../../components/AbilitiesPokemon";
 const api = new PokeAPI();
 
 const PokemonDetails = () => {
@@ -21,9 +22,8 @@ const PokemonDetails = () => {
     <div className="details">
       <div className="details-aling">
         <form className="details-form">
-          <Link href="/">
-            <button className="details-form_button">#index</button>
-          </Link>
+          <button className="details-form_button">#001</button>
+
           <button className="details-form_button">#002</button>
         </form>
 
@@ -64,9 +64,9 @@ const PokemonDetails = () => {
 
               <div className="details-container_paragraph">
                 <p className="details-container_pokemon-paragraph">Abilities</p>
-                <p className="details-container_pokemon-paragraph">
-                  {data.abilities && data.abilities[0].ability.name}
-                </p>
+                {data?.abilities?.map((abilities) => (
+                  <AbilitiesPokemon name={abilities.ability.name} />
+                ))}
               </div>
             </div>
           </div>
