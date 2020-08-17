@@ -4,12 +4,16 @@ import { useRouter } from "next/router";
 import PokeAPI from "../../APIS/PokeAPI";
 import TypePokemon from "../../components/TypePokemon";
 import AbilitiesPokemon from "../../components/AbilitiesPokemon";
+import Convert from "convert-units";
+
 const api = new PokeAPI();
 
 const PokemonDetails = () => {
   const [data, setData] = useState({});
   const router = useRouter();
   const { name } = router.query;
+
+  const [nextAndBack, setNextAndBack] = useState([]);
 
   useEffect(() => {
     if (name) {
@@ -18,13 +22,28 @@ const PokemonDetails = () => {
     return () => {};
   }, []);
 
+  useEffect(() => {
+    if (name) {
+      api.getNextPokemon(name).then((data) => setNextAndBack(data));
+    }
+    return () => {};
+  }, []);
+
+  const heightCalulo = data.height / 10;
+  const heightIn = Convert(heightCalulo).from("m").to("ft").toFixed(2);
+
+  const weightCalculo = data.weight / 10;
+  const weightIn = Convert(weightCalculo).from("kg").to("lb").toFixed(2);
+
   return (
     <div className="details">
       <div className="details-aling">
         <form className="details-form">
-          <button className="details-form_button">#001</button>
-
-          <button className="details-form_button">#002</button>
+          {nextAndBack.map((obj) => (
+            <Link href={`/details/${obj.name}`}>
+              <button className="details-form_button">{obj.name}</button>
+            </Link>
+          ))}
         </form>
 
         <div className="details-container">
@@ -43,13 +62,13 @@ const PokemonDetails = () => {
               <div className="details-container_paragraph">
                 <p className="details-container_pokemon-paragraph">Height</p>
                 <p className="details-container_pokemon-paragraph">
-                  {data.height}
+                  {heightIn}" ({heightCalulo}m)
                 </p>
               </div>
               <div className="details-container_paragraph">
                 <p className="details-container_pokemon-paragraph">Weight</p>
                 <p className="details-container_pokemon-paragraph">
-                  {data.weight}
+                  {weightIn} lbs ({weightCalculo}kg)
                 </p>
               </div>
             </div>
