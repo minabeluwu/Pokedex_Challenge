@@ -15,7 +15,7 @@ const CardPokemon = ({ pokemonData }) => {
     <Link href="/details/[name]" as={`/details/${data.name}`}>
       <li className="home-item">
         <img
-          src={data.sprites ? data.sprites.front_default : "/bulbasaur.svg"}
+          src={data.sprites ? data.sprites.front_default : "/pokeball.svg"}
           alt=""
           className="home-link_container-img"
         />
@@ -23,7 +23,7 @@ const CardPokemon = ({ pokemonData }) => {
           <p className="home-link_container-name">
             {data.name}
             <br />
-            <span>#{data.id}</span>
+            <span>#{data?.id?.toString().padStart(3, "0")}</span>
           </p>
         </div>
       </li>

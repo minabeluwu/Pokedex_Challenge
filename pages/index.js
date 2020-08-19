@@ -12,7 +12,13 @@ const Home = () => {
       setSearctPokemon(data.results);
     });
   }, []);
-  if (searchPokemon === undefined) return "cargando....";
+
+  if (searchPokemon === undefined)
+    return (
+      <div className="home-loading_container">
+        <img src="/loading.svg" alt="" className="home-loading" />
+      </div>
+    );
 
   return <ListPokemon listPokemon={searchPokemon} />;
 };
