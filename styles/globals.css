@@ -124,7 +124,7 @@ a {
 
 .details {
   background-color: rgba(0, 0, 0, 0.4);
-
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -239,6 +239,9 @@ a {
 }
 
 @media only screen and (max-width: 800px) {
+  .details {
+    height: 100%;
+  }
   .details-container {
     flex-direction: column;
     align-items: center;
@@ -252,6 +255,7 @@ a {
   }
   .details-container_description {
     align-items: center;
+    margin-bottom: 20px;
   }
   .details-container_pokemon-paragraph {
     text-align: center;
