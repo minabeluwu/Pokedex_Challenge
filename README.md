@@ -5,4 +5,4 @@
  
 >npm run start
 
-Page: https://pokedex-challenge.vercel.app/
+Pagina: https://pokedex-challenge.vercel.app/
