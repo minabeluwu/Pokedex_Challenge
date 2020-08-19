@@ -76,7 +76,7 @@ const PokemonDetails = () => {
 
             <div className="details-container_pokemon">
               <h1 className="details-container_pokemon-name">
-                {SWRData?.name}{" "}
+                {SWRData?.name}
                 <span className="span-number">
                   #{SWRData?.id.toString().padStart(3, "0")}
                 </span>
